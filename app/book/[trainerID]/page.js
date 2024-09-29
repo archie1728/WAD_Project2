@@ -58,13 +58,9 @@ function BookScreen() {
         checkAvailability(selectedDateTime);
     };
 
-    const
-        checkAvailability
-            = (dateTime) => {
-                let
-                    isBooked = false;
-                for
-                    (
+    const checkAvailability = (dateTime) => {
+        let isBooked = false;
+        for (
                     let
                     i = 0; i < appointments.length; i++) {
                     if
