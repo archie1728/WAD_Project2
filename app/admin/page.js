@@ -45,9 +45,9 @@ const AdminPage = () => {
 
     const fetchAppointments = async () => {
         try {
-            const response = await fetch('/api/appointments');
-            const data = await response.json();
-            setAppointments(data);
+            const APresponse = await fetch('/api/appointments');
+            const APdata = await APresponse.json();
+            setAppointments(APdata);
         } catch (error) {
             console.error('Error fetching appointments:', error);
         }
@@ -55,8 +55,8 @@ const AdminPage = () => {
 
     const fetchUsers = async () => {
         try {
-            const response = await fetch('/api/users');
-            const userData = await response.json();
+            const Uresponse = await fetch('/api/users');
+            const userData = await Uresponse.json();
             setUsers(userData);
         } catch (error) {
             console.error('Error fetching users:', error);
