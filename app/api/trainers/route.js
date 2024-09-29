@@ -32,9 +32,9 @@ export async function POST(req) {
     });
 
     await newTrainer.save();
-    return new Response(JSON.stringify({ message: 'Trainer created successfully', trainer: newTrainer }), { status: 201 });
+    return NextResponse(JSON.stringify({ message: 'Trainer created successfully', trainer: newTrainer }), { status: 201 });
   } catch (error) {
-    return new Response(JSON.stringify({ message: 'Error creating trainer', error: error.message }), { status: 500 });
+    return NextResponse(JSON.stringify({ message: 'Error creating trainer', error: error.message }), { status: 500 });
   }
 }
 
