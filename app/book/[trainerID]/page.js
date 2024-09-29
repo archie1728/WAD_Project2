@@ -1,5 +1,5 @@
 "use client";
-import {useRouter} from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import dayjs from 'dayjs';
@@ -58,16 +58,48 @@ function BookScreen() {
         checkAvailability(selectedDateTime);
     };
 
-    const checkAvailability = (dateTime) => {
-        const isBooked = appointments.some(appointment => 
-            dayjs(appointment.date).isSame(dateTime, 'minute')
-        );
-
-        setAvailabilityMessage(isBooked 
-            ? `Trainer busy on ${dateTime.format('YYYY-MM-DD HH:mm')}` 
-            : `Trainer available on ${dateTime.format('YYYY-MM-DD HH:mm')}`
-        );
-    };
+    const
+        checkAvailability
+            = (dateTime) => {
+                let
+                    isBooked = false;
+                for
+                    (
+                    let
+                    i = 0; i < appointments.length; i++) {
+                    if
+                        (
+                        dayjs
+                            (appointments[i].date).
+                            isSame
+                            (dateTime,
+                                'minute'
+                            )) {
+                                isBooked = true;
+                        // Found a booking at this time
+                        break
+                        ;
+                        // Exit the loop early since we found a match
+                    }
+                }
+                setAvailabilityMessage
+                    (isBooked ?
+                        `Trainer busy on
+${dateTime.format(
+                            'YYYY-MM-DD HH:mm'
+                        )}
+`
+                        :
+                        `Trainer available on
+${dateTime.format(
+                            'YYYY-MM-DD HH:mm'
+                        )}
+`
+                    );
+                return
+                isBooked;
+                // Return whether the time is booked or not
+            };
 
     const handleBooking = async () => {
         if (!selectedDate || !selectedTime) {
@@ -160,8 +192,8 @@ function BookScreen() {
                             )}
                         </CardContent>
                         <CardFooter>
-                            <Button 
-                                onClick={handleBooking} 
+                            <Button
+                                onClick={handleBooking}
                                 disabled={!selectedDate || !selectedTime || bookingSuccess}
                                 className="w-full"
                             >
