@@ -81,7 +81,7 @@ const AdminPage = () => {
             if (response.ok) {
                 fetchTrainers();
                 setNewTrainerData({
-                    name: '', age: '', expYears: '', phone: '', price: '', imgUrl: '', type: 'Personal', description: ''
+                    name: '',email: '', password: '', age: '', expYears: '', phone: '', price: '', imgUrl: '', type: 'Personal', description: ''
                 });
             } else {
                 const errorData = await response.json();
