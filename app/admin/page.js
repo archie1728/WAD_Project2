@@ -167,6 +167,14 @@ const AdminPage = () => {
                                             <Input id="name" name="name" value={newTrainerData.name} onChange={handleNewTrainerChange} required />
                                         </div>
                                         <div className="space-y-2">
+                                            <Label htmlFor="email">Email</Label>
+                                            <Input id="email" name="email" value={newTrainerData.email} onChange={handleNewTrainerChange} required />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="password">Password</Label>
+                                            <Input id="password" name="password" value={newTrainerData.password} onChange={handleNewTrainerChange} required />
+                                        </div>
+                                        <div className="space-y-2">
                                             <Label htmlFor="age">Age</Label>
                                             <Input type="number" id="age" name="age" value={newTrainerData.age} onChange={handleNewTrainerChange} required />
                                         </div>

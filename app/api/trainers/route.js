@@ -17,7 +17,7 @@ export async function GET() {
 export async function POST(req) {
   await dbConnect();
 
-  const { name, age, expYears, phone, price, imgUrl, type, description } = await req.json();
+  const { name, age, expYears, phone, price, imgUrl, type, description, email, password } = await req.json();
 
   try {
     const newTrainer = new Trainer({
@@ -29,12 +29,14 @@ export async function POST(req) {
       imgUrl,
       type,
       description,
+      email,
+      password,
     });
 
     await newTrainer.save();
-    return NextResponse(JSON.stringify({ message: 'Trainer created successfully', trainer: newTrainer }), { status: 201 });
+    return new Response(JSON.stringify({ message: 'Trainer created successfully', trainer: newTrainer }), { status: 201 });
   } catch (error) {
-    return NextResponse(JSON.stringify({ message: 'Error creating trainer', error: error.message }), { status: 500 });
+    return new Response(JSON.stringify({ message: 'Error creating trainer', error: error.message }), { status: 500 });
   }
 }
 
