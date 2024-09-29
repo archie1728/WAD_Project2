@@ -115,7 +115,7 @@ const TrainerPage = () => {
                             <DialogContent>
                                 <DialogHeader>
                                     <DialogTitle>Add Busy Date</DialogTitle>
-                                    <DialogDescription>Select a date when you're not available.</DialogDescription>
+                                    <DialogDescription>Select a date when you&apos;re not available.</DialogDescription>
                                 </DialogHeader>
                                 <div className="grid gap-4 py-4">
                                     <div className="grid grid-cols-4 items-center gap-4">
