@@ -30,29 +30,42 @@ const UserAppointments = () => {
             try {
                 const response = await fetch(`/api/appointments?userID=${userID}`);
                 const data = await response.json();
-                const userAppointments = data.filter(appointment => appointment.user._id === userID);
+                console.log(data);
+         
+                // Assuming the response is an object containing an array in 'appointments'
+                const appointmentsArray = Object.values(data) || []; // Use an empty array if 'appointments' is undefined
+         
+                // Filter appointments for the specific userID
+                const userAppointments = appointmentsArray.filter(appointment => appointment.user && appointment.user._id === userID);
+         
+                // Set the filtered appointments
                 setAppointments(userAppointments);
-
-                const trainerPromises = data.map(appointment => 
+         
+                // Handle trainer fetching
+                const trainerPromises = userAppointments.map(appointment => 
                     appointment.trainer 
                         ? fetch(`/api/trainers/${appointment.trainer._id}`).then(res => res.json())
                         : Promise.resolve(null)
                 );
-
+         
+                // Fetch trainer data and map trainers to their appointments
                 const trainersData = await Promise.all(trainerPromises);
                 const trainersMap = {};
                 trainersData.forEach((trainer, index) => {
-                    const appointment = data[index];
+                    const appointment = userAppointments[index];
                     trainersMap[appointment._id] = trainer ? trainer.name : "Trainer Unavailable";
                 });
-
+         
+                // Set the trainer map
                 setTrainers(trainersMap);
             } catch (error) {
                 console.error('Error fetching appointments:', error);
             } finally {
-                setLoading(false);
+                setLoading(false); // Ensure the loading state is handled
             }
         };
+        
+
 
         fetchAppointments();
     }, [userID]);
