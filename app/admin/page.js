@@ -226,7 +226,7 @@ const AdminPage = () => {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {trainers.map(trainer => (
+                                        {trainers.length > 0? (trainers.map(trainer => (
                                             <TableRow key={trainer._id}>
                                                 <TableCell>{trainer.name}</TableCell>
                                                 <TableCell>{trainer.type}</TableCell>
@@ -234,8 +234,7 @@ const AdminPage = () => {
                                                     <Button variant="outline" className="mr-2" onClick={() => {setEditTrainerData(trainer); setIsModalOpen(true);}}>Update</Button>
                                                     <Button variant="destructive" onClick={() => handleDeleteTrainer(trainer._id)}>Delete</Button>
                                                 </TableCell>
-                                            </TableRow>
-                                        ))}
+                                            </TableRow>))): (<TableRow><TableCell colSpan="3">No trainers found</TableCell></TableRow>)}
                                     </TableBody>
                                 </Table>
                             </CardContent>
@@ -259,7 +258,7 @@ const AdminPage = () => {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {appointments.map((appointment) => (
+                                        {appointments.length > 0? (appointments.map((appointment) => (
                                             <TableRow key={appointment._id}>
                                                 <TableCell>{appointment.trainer ? appointment.trainer.name : 'Unavailable'}</TableCell>
                                                 <TableCell>{new Date(appointment.date).toLocaleDateString()}</TableCell>
@@ -268,8 +267,7 @@ const AdminPage = () => {
                                                 <TableCell>
                                                     <Button variant="destructive" onClick={() => deleteAppointment(appointment._id)}>Delete</Button>
                                                 </TableCell>
-                                            </TableRow>
-                                        ))}
+                                            </TableRow>))): (<TableRow><TableCell colSpan="3">No appointments found</TableCell></TableRow>)}
                                     </TableBody>
                                 </Table>
                             </CardContent>
