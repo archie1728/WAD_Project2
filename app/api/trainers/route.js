@@ -22,6 +22,8 @@ export async function POST(req) {
   try {
     const newTrainer = new Trainer({
       name,
+      email,
+      password,
       age,
       expYears,
       phone,
@@ -29,8 +31,6 @@ export async function POST(req) {
       imgUrl,
       type,
       description,
-      email,
-      password,
     });
 
     await newTrainer.save();
